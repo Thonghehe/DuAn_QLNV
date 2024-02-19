@@ -25,7 +25,7 @@ public class QLNV {
     Scanner sc = new Scanner(System.in);
 
     public void Y01() {
-        System.out.println("Mời Bạn Nhập số nhân viên: ");
+        System.out.println("Moi Ban Nhap so nhan vien: ");
         System.out.println("1-NV Hanh Chinh  2-NV Ban Hang 3-NV Ke Toan 4-NV Ban Thoi Gian 5-NV Ki Thuat 6-NV Quan Ly");
         int option = Integer.parseInt(sc.nextLine());
         switch (option) {

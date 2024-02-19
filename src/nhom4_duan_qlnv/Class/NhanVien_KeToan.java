@@ -12,7 +12,8 @@ import java.util.Scanner;
  *
  * @author Acer
  */
-public class NhanVien_KeToan extends NhanVien{
+public class NhanVien_KeToan extends NhanVien {
+
     private int accountingExperience;
     private String certification;
     private List<String> softwareSkills;
@@ -33,8 +34,6 @@ public class NhanVien_KeToan extends NhanVien{
         this.phongBan = phongBan;
     }
 
-    
-
     public NhanVien_KeToan() {
     }
 
@@ -46,8 +45,6 @@ public class NhanVien_KeToan extends NhanVien{
         this.phongBan = phongBan;
     }
 
-    
-    
     public int getAccountingExperience() {
         return accountingExperience;
     }
@@ -71,25 +68,49 @@ public class NhanVien_KeToan extends NhanVien{
     public void setSoftwareSkills(List<String> softwareSkills) {
         this.softwareSkills = softwareSkills;
     }
-    
+
     public void nhap() {
         Scanner sc = new Scanner(System.in);
         super.nhap();
-        System.out.println("nhập số năm kinh nghiệm: ");
-        accountingExperience = Integer.parseInt(sc.nextLine());
-        System.out.println("Nhập số lượng Kỹ năng phần mềm: ");
-        int skillCount = Integer.parseInt(sc.nextLine());
-        softwareSkills = new ArrayList<>();
-        for (int i = 0; i < skillCount; i++) {
-            System.out.println("Nhập chứng chỉ thứ " + (i + 1) + ": ");
-            String skill = sc.nextLine();
-            softwareSkills.add(skill);
+
+       
+        while (true) {
+            try {
+                System.out.println("nhap so nam kinh nghiem: ");
+                accountingExperience = Integer.parseInt(sc.nextLine());
+                if (accountingExperience >= 0) {
+                    break; 
+                } else {
+                    System.out.println("So nam kinh nghiem phai >= 0. Vui long nhap lai.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so nguyen cho so nam kinh nghiem.");
+            }
+        }
+        while (true) {
+            try {
+                System.out.println("Nhap so luong Ky nang phan mem: ");
+                int skillCount = Integer.parseInt(sc.nextLine());
+                if (skillCount >= 0) {
+                    softwareSkills = new ArrayList<>();
+                    for (int i = 0; i < skillCount; i++) {
+                        System.out.println("Nhap chung chi thu " + (i + 1) + ": ");
+                        String skill = sc.nextLine();
+                        softwareSkills.add(skill);
+                    }
+                    break;
+                } else {
+                    System.out.println("So luong kỹ năng phai >= 0. Vui long nhap lai.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so nguyen cho so luong kỹ năng phần mềm.");
+            }
         }
     }
-    
-     @Override
+
+    @Override
     public float calculatePay() {
-        float baseSalary = getLuong();  // Lấy lương cơ bản từ lớp cha
+        float baseSalary = getLuong(); 
 
         //tính lương  dựa trên kinh nghiệm kế toán
         float experienceBonus = accountingExperience * 5000;  // Giả sử
@@ -99,8 +120,7 @@ public class NhanVien_KeToan extends NhanVien{
 
         float totalSalary = baseSalary + experienceBonus + softwareSkillsBonus;
 
-
         return totalSalary;
     }
-    
+
 }

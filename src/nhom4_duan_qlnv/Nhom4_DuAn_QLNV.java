@@ -41,11 +41,11 @@ public class Nhom4_DuAn_QLNV {
             option = Integer.parseInt(sc.nextLine());
             switch (option) {
                 case 1:
-                    System.out.println("----------Nhập Danh Sách Nhân Viên----------");
+                    System.out.println("----------Nhap Danh Sach Nhan Vien----------");
                     ql.Y01();
                     break;
                 case 2:
-                    System.out.println("----------Thông Tin Nhân Viên----------");
+                    System.out.println("----------Thong Tin Nhan Vien----------");
                     ql.Y02();
                     break;
                 case 3:
@@ -70,10 +70,10 @@ public class Nhom4_DuAn_QLNV {
                     ql.Y09();
                     break;
                 case 0:
-                    System.out.println("Cảm Ơn đã sử dụng!!!");
+                    System.out.println("Cam On đa su dung!!!");
                     System.exit(0);
                 default:
-                    System.out.println("Lựa chọn của bạn không tồn tại!!! Mời Nhập Lại");
+                    System.out.println("Lua chon cua ban khong ton tai!!! Moi Nhap Lai");
                     break;
             }
         }

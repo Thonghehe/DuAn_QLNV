@@ -5,6 +5,8 @@
 package nhom4_duan_qlnv.Class;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -60,8 +62,6 @@ public class NhanVien {
         this.phongBan = phongBan;
     }
 
-    
-
     public float getLuong() {
         return luong;
     }
@@ -71,16 +71,58 @@ public class NhanVien {
     }
 
     public void nhap() {
-        System.out.println("Nhập thông tin nhân viên!");
+        System.out.println("Nhap thong tin nhan vien!");
         Scanner sc = new Scanner(System.in);
-        System.out.println("ma la: ");
-        maNV = sc.nextLine();
-        System.out.println("ho ten la: ");
-        ten = sc.nextLine();
-        System.out.println("email la: ");
-        email = sc.nextLine();
-        System.out.println("lương cơ bản la: ");
-        luong = Float.parseFloat(sc.nextLine());
+
+        // Biến địa phương để lưu trạng thái của validate
+        boolean isValidMaNV = false;
+        boolean isValidTen = false;
+        boolean isValidEmail = false;
+        boolean isValidLuong = false;
+
+        while (!isValidMaNV) {
+            System.out.println("ma la: ");
+            maNV = sc.nextLine();
+            if (!isEmpty(maNV)) {
+                isValidMaNV = true;
+            } else {
+                System.out.println("Ma khong duoc de trong. Vui long nhap lai.");
+            }
+        }
+
+        while (!isValidTen) {
+            System.out.println("ho ten la: ");
+            ten = sc.nextLine();
+            if (!isEmpty(ten)) {
+                isValidTen = true;
+            } else {
+                System.out.println("Ten khong duoc de trong. Vui long nhap lai.");
+            }
+        }
+
+        while (!isValidEmail) {
+            System.out.println("email la: ");
+            email = sc.nextLine();
+            if (isValidEmail(email)) {
+                isValidEmail = true;
+            } else {
+                System.out.println("Email khong hop le. Vui long nhap lai.");
+            }
+        }
+
+        while (!isValidLuong) {
+            try {
+                System.out.println("luong co ban la: ");
+                luong = Float.parseFloat(sc.nextLine());
+                if (luong >= 0) {
+                    isValidLuong = true;
+                } else {
+                    System.out.println("Luong khong hop le. Vui long nhap lai.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so cho luong.");
+            }
+        }
     }
 
     public float calculatePay() {
@@ -92,7 +134,7 @@ public class NhanVien {
         System.out.printf("%-20s %-20s %-20s %-20s %-20.2f %-20.2f%n",
                 maNV, ten, email, getPhongBan(), luong, getThue());
         System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s%n", "", "", "", "", "", "");
-        System.out.printf("%-20s %-20.2f%n", "Tổng lương", calculatePay());
+        System.out.printf("%-20s %-20.2f%n", "Tong luong", calculatePay());
     }
 
     public float getThue() {
@@ -103,5 +145,15 @@ public class NhanVien {
         } else {
             return (float) (getLuong() * 0.12);
         }
+    }
+
+    private boolean isValidEmail(String email) {
+        // Biểu thức chính quy để kiểm tra email
+        String regex = "^[A-Za-z0-9+_.-]+@gmail\\.com$";
+        return email.matches(regex);
+    }
+
+    private boolean isEmpty(String str) {
+        return str == null || str.trim().isEmpty();
     }
 }

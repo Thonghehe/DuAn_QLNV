@@ -72,23 +72,77 @@ public class NhanVien_KiThuat extends NhanVien {
         this.certifications = certifications;
     }
 
+   
     @Override
     public void nhap() {
-        Scanner sc = new Scanner(System.in);
         super.nhap();
-        System.out.println("nhap so gio tang: ");
-        overtimeHours = Float.parseFloat(sc.nextLine());
-        System.out.println("luong tang ca: ");
-        hourlyRateOvertime = Float.parseFloat(sc.nextLine());
-        System.out.println("Du An Hoan Thanh:");
-        projectsCompleted = Integer.parseInt(sc.nextLine());
-        System.out.println("Nhap sa luong chung chi: ");
-        int certCount = Integer.parseInt(sc.nextLine());
-        certifications = new ArrayList<>();
-        for (int i = 0; i < certCount; i++) {
-            System.out.println("Nhap chung chi thu " + (i + 1) + ": ");
-            String certification = sc.nextLine();
-            certifications.add(certification);
+        Scanner sc = new Scanner(System.in);
+
+        
+        boolean isValidOvertimeHours = false;
+        boolean isValidHourlyRateOvertime = false;
+        boolean isValidProjectsCompleted = false;
+        boolean isValidCertifications = false;
+
+        while (!isValidOvertimeHours) {
+            try {
+                System.out.println("Nhap số gio tang ca: ");
+                overtimeHours = Float.parseFloat(sc.nextLine());
+                if (overtimeHours >= 0) {
+                    isValidOvertimeHours = true;
+                } else {
+                    System.out.println("So gio tang ca khong hop le. Vui long nhap lai.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so cho so gio tang.");
+            }
+        }
+
+        while (!isValidHourlyRateOvertime) {
+            try {
+                System.out.println("Nhap luong tang ca: ");
+                hourlyRateOvertime = Float.parseFloat(sc.nextLine());
+                if (hourlyRateOvertime >= 0) {
+                    isValidHourlyRateOvertime = true;
+                } else {
+                    System.out.println("Luong tang ca khong hop le. Vui long nhap lai.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so cho luong tang ca.");
+            }
+        }
+
+        while (!isValidProjectsCompleted) {
+            try {
+                System.out.println("Nhap so du an hoan thanh:");
+                projectsCompleted = Integer.parseInt(sc.nextLine());
+                if (projectsCompleted >= 0) {
+                    isValidProjectsCompleted = true;
+                } else {
+                    System.out.println("So du an hoan thanh khong hop le. Vui long nhap lai.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so nguyen cho so du an hoan thanh.");
+            }
+        }
+
+        while (!isValidCertifications) {
+            System.out.println("Nhap so luong chung chi: ");
+            int certCount = Integer.parseInt(sc.nextLine());
+            certifications = new ArrayList<>();
+            for (int i = 0; i < certCount; i++) {
+                System.out.println("Nhap chung chi thu " + (i + 1) + ": ");
+                String certification = sc.nextLine();
+                if (!isEmpty(certification)) {
+                    certifications.add(certification);
+                } else {
+                    System.out.println("Chung chi khong đuoc đe trong. Vui long nhap lai.");
+                    break;
+                }
+            }
+            if (certifications.size() == certCount) {
+                isValidCertifications = true;
+            }
         }
     }
 
@@ -103,6 +157,10 @@ public class NhanVien_KiThuat extends NhanVien {
         return totalSalary;
     }
 
+    private boolean isEmpty(String str) {
+        return str == null || str.trim().isEmpty();
+    }
+    
 //    @Override
 //    public void xuat() {
 //        super.xuat();  // Call the xuat method in the superclass
@@ -115,5 +173,5 @@ public class NhanVien_KiThuat extends NhanVien {
 //        }
 //        System.out.println("Phong ban: " + phongBan);
 //    }
-
 }
+

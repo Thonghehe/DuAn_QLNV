@@ -27,13 +27,9 @@ public class NhanVien_BanTG extends NhanVien {
         this.phongBan = phongBan;
     }
 
-    
-
     public NhanVien_BanTG() {
     }
-    
-    
-    
+
     public int getCaLam() {
         return caLam;
     }
@@ -68,21 +64,54 @@ public class NhanVien_BanTG extends NhanVien {
 
     @Override
     public void nhap() {
-        super.nhap(); 
+        super.nhap();
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.print("Nhap ca lam (1: Sang, 2: Chieu, 3: Toi): ");
-        caLam = Integer.parseInt(sc.nextLine());
+        boolean isValidCaLam = false;
+        boolean isValidHourlyRate = false;
+        boolean isValidHoursWorked = false;
+        boolean isValidOvertimeHours = false;
 
-        System.out.print("Nhap gia luong theo gio: ");
-        hourlyRate = Integer.parseInt(sc.nextLine());
+        while (!isValidCaLam) {
+            System.out.print("Nhap ca lam (1: Sang, 2: Chieu, 3: Toi): ");
+            caLam = Integer.parseInt(sc.nextLine());
+            if (caLam >= 1 && caLam <= 3) {
+                isValidCaLam = true;
+            } else {
+                System.out.println("Ca lam khong hop le. Vui long nhap lai.");
+            }
+        }
 
-        System.out.print("Nhap so gio lam viec: ");
-        hoursWorked = Integer.parseInt(sc.nextLine());
+        while (!isValidHourlyRate) {
+            System.out.print("Nhap gia luong theo gio: ");
+            hourlyRate = Integer.parseInt(sc.nextLine());
+            if (hourlyRate >= 0) {
+                isValidHourlyRate = true;
+            } else {
+                System.out.println("Gia luong khong hop le. Vui long nhap lai.");
+            }
+        }
 
-        System.out.print("Nhap so gio lam them: ");
-        overtimeHours = Integer.parseInt(sc.nextLine());
+        while (!isValidHoursWorked) {
+            System.out.print("Nhap so gio lam viec: ");
+            hoursWorked = Integer.parseInt(sc.nextLine());
+            if (hoursWorked >= 0) {
+                isValidHoursWorked = true;
+            } else {
+                System.out.println("So gio lam viec khong hop le. Vui long nhap lai.");
+            }
+        }
+
+        while (!isValidOvertimeHours) {
+            System.out.print("Nhap so gio lam them: ");
+            overtimeHours = Integer.parseInt(sc.nextLine());
+            if (overtimeHours >= 0) {
+                isValidOvertimeHours = true;
+            } else {
+                System.out.println("So gio lam them khong hop le. Vui long nhap lai.");
+            }
+        }
     }
 
     @Override
