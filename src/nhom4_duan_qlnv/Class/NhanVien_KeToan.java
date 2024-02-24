@@ -17,33 +17,33 @@ public class NhanVien_KeToan extends NhanVien {
     private int accountingExperience;
     private String certification;
     private List<String> softwareSkills;
-    private String phongBan;
 
-    public NhanVien_KeToan(int accountingExperience, String certification, List<String> softwareSkills, String phongBan, String maNV, String ten, String email, float luong) {
-        super(maNV, ten, email, luong);
+    public NhanVien_KeToan(int accountingExperience, String certification, List<String> softwareSkills, String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
         this.accountingExperience = accountingExperience;
         this.certification = certification;
         this.softwareSkills = softwareSkills;
-        this.phongBan = phongBan;
     }
+    
+
+    
 
     public NhanVien_KeToan(int accountingExperience, String certification, List<String> softwareSkills, String phongBan) {
         this.accountingExperience = accountingExperience;
         this.certification = certification;
         this.softwareSkills = softwareSkills;
-        this.phongBan = phongBan;
     }
 
+    public NhanVien_KeToan(String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
+    }
+    
+    
+    
     public NhanVien_KeToan() {
     }
 
-    public String getPhongBan() {
-        return phongBan;
-    }
 
-    public void setPhongBan(String phongBan) {
-        this.phongBan = phongBan;
-    }
 
     public int getAccountingExperience() {
         return accountingExperience;

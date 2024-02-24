@@ -16,16 +16,20 @@ public class NhanVien_BanTG extends NhanVien {
     private int hourlyRate;
     private int hoursWorked;
     private int overtimeHours;
-    private String phongBan;
 
-    public NhanVien_BanTG(int caLam, int hourlyRate, int hoursWorked, int overtimeHours, String phongBan, String maNV, String ten, String email, float luong) {
-        super(maNV, ten, email, luong);
+    public NhanVien_BanTG(int caLam, int hourlyRate, int hoursWorked, int overtimeHours, String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
         this.caLam = caLam;
         this.hourlyRate = hourlyRate;
         this.hoursWorked = hoursWorked;
         this.overtimeHours = overtimeHours;
-        this.phongBan = phongBan;
     }
+
+    public NhanVien_BanTG(String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
+    }
+
+    
 
     public NhanVien_BanTG() {
     }
@@ -129,3 +133,4 @@ public class NhanVien_BanTG extends NhanVien {
     }
 
 }
+                

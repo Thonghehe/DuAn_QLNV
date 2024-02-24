@@ -15,23 +15,20 @@ public class QuanLy extends NhanVien {
     private int teamSize;
     private float managementAllowance;
     private int projectsManaged;
-    private String phongBan;
 
-    public QuanLy(int teamSize, float managementAllowance, int projectsManaged, String phongBan, String maNV, String ten, String email, float luong) {
-        super(maNV, ten, email, luong);
+    public QuanLy(int teamSize, float managementAllowance, int projectsManaged, String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
         this.teamSize = teamSize;
         this.managementAllowance = managementAllowance;
         this.projectsManaged = projectsManaged;
-        this.phongBan = phongBan;
     }
 
-    public String getPhongBan() {
-        return phongBan;
+    public QuanLy(String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
     }
+    
 
-    public void setPhongBan(String phongBan) {
-        this.phongBan = phongBan;
-    }
+    
 
     
 

@@ -15,33 +15,29 @@ public class NhanVien_BanHang extends NhanVien {
     private float doanhSo;
     private float hoaHong;
     private int successfulDeals;
-    private String phongBan;
 
-    public NhanVien_BanHang(float doanhSo, float hoaHong, int successfulDeals, String phongBan, String maNV, String ten, String email, float luong) {
-        super(maNV, ten, email, luong);
+    public NhanVien_BanHang(float doanhSo, float hoaHong, int successfulDeals, String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
         this.doanhSo = doanhSo;
         this.hoaHong = hoaHong;
         this.successfulDeals = successfulDeals;
-        this.phongBan = phongBan;
     }
 
-    public NhanVien_BanHang(float doanhSo, float hoaHong, int successfulDeals, String phongBan) {
-        this.doanhSo = doanhSo;
-        this.hoaHong = hoaHong;
-        this.successfulDeals = successfulDeals;
-        this.phongBan = phongBan;
+
+    
+
+    public NhanVien_BanHang(String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
     }
+
+        
+
+    
 
     public NhanVien_BanHang() {
     }
 
-    public String getPhongBan() {
-        return phongBan;
-    }
-
-    public void setPhongBan(String phongBan) {
-        this.phongBan = phongBan;
-    }
+    
 
     public float getDoanhSo() {
         return doanhSo;

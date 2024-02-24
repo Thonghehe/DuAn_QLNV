@@ -20,11 +20,12 @@ public class NhanVien {
     private String phongBan;
     private float luong;
 
-    public NhanVien(String maNV, String ten, String email, float luong) {
+    public NhanVien(String maNV, String ten, String email, String phongBan, float luong) {
         this.maNV = maNV;
         this.ten = ten;
         this.email = email;
         this.luong = luong;
+        this.phongBan = phongBan;
     }
 
     public NhanVien() {
@@ -130,11 +131,14 @@ public class NhanVien {
     }
 
     public void xuat() {
-        System.out.println("    ");
-        System.out.printf("%-20s %-20s %-20s %-20s %-20.2f %-20.2f%n",
-                maNV, ten, email, getPhongBan(), luong, getThue());
+        System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
+        System.out.println("|   maNV     |       ten                |         email        |    phongBan                    |   luong    |  thueTn  |  tongLuong |");
+        System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
+        System.out.printf("| %-10s | %-24s | %-20s | %-30s | %-10.2f | %-8.2f | %-10.2f |\n",
+                getMaNV(), getTen(), getEmail(),
+                getPhongBan(), getLuong(), getThue(), calculatePay());
         System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s%n", "", "", "", "", "", "");
-        System.out.printf("%-20s %-20.2f%n", "Tong luong", calculatePay());
+        
     }
 
     public float getThue() {

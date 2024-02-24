@@ -18,24 +18,26 @@ public class NhanVien_KiThuat extends NhanVien {
     private float hourlyRateOvertime;
     private int projectsCompleted;
     private List<String> certifications;
-    private String phongBan;
 
-    public NhanVien_KiThuat(float overtimeHours, float hourlyRateOvertime, int projectsCompleted, List<String> certifications, String phongBan, String maNV, String ten, String email, float luong) {
-        super(maNV, ten, email, luong);
+    public NhanVien_KiThuat(float overtimeHours, float hourlyRateOvertime, int projectsCompleted, List<String> certifications, String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
         this.overtimeHours = overtimeHours;
         this.hourlyRateOvertime = hourlyRateOvertime;
         this.projectsCompleted = projectsCompleted;
         this.certifications = certifications;
-        this.phongBan = phongBan;
     }
 
-    public String getPhongBan() {
-        return phongBan;
+    public NhanVien_KiThuat(String maNV, String ten, String email, String phongBan, float luong) {
+        super(maNV, ten, email, phongBan, luong);
     }
 
-    public void setPhongBan(String phongBan) {
-        this.phongBan = phongBan;
-    }
+    
+
+    
+
+    
+    
+    
 
     public NhanVien_KiThuat() {
     }
@@ -151,7 +153,9 @@ public class NhanVien_KiThuat extends NhanVien {
         float baseSalary = getLuong();
         float overtimePay = overtimeHours * hourlyRateOvertime;
         float additionalPay = projectsCompleted * 1000;
-
+        
+        
+        
         float totalSalary = baseSalary + overtimePay + additionalPay;
 
         return totalSalary;

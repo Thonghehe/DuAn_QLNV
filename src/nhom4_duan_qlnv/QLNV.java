@@ -24,7 +24,7 @@ public class QLNV {
     ArrayList<NhanVien> list = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
 
-    public void Y01() {
+    public void enterEmployeeList() {
         System.out.println("Moi Ban Nhap so nhan vien: ");
         System.out.println("1-NV Hanh Chinh  2-NV Ban Hang 3-NV Ke Toan 4-NV Ban Thoi Gian 5-NV Ki Thuat 6-NV Quan Ly");
         int option = Integer.parseInt(sc.nextLine());
@@ -71,22 +71,32 @@ public class QLNV {
         }
     }
 
-    public void Y02() {
-        System.out.println("--------------------------Danh Sach Nhan Vien--------------------------");
-        System.out.printf("%-20s %-20s %-20s %-20s %-20s %-20s", "maNV", "ten", "email", "phongBan", "luong", "thueTn");
+    public void displayEmployeeList() {
+        System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
+        System.out.println("|   maNV     |       ten                |         email        |    phongBan                    |   luong    |  thueTn  |  tongLuong |");
+        System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
         for (NhanVien nhanVien : list) {
-            nhanVien.xuat();
+            System.out.printf("| %-10s | %-24s | %-20s | %-30s | %-10.2f | %-8.2f | %-10.2f |\n",
+                    nhanVien.getMaNV(), nhanVien.getTen(), nhanVien.getEmail(),
+                    nhanVien.getPhongBan(), nhanVien.getLuong(), nhanVien.getThue(), nhanVien.calculatePay());
         }
+        System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
     }
 
-    public void Y03() {
+    public void findEmployeeById() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma nhan vien can tim: ");
         String ID = sc.nextLine();
         Boolean check = false;
-        for (NhanVien nv : list) {
-            if (ID.equalsIgnoreCase(nv.getMaNV())) {
-                System.out.printf("Ma nhan vien: %s | Ho ten: %s | Phong ban: %s | Luong: %.2f\n", nv.getMaNV(), nv.getTen(), nv.getPhongBan(), nv.getLuong());
+        for (NhanVien nhanVien : list) {
+            if (nhanVien.getMaNV().toLowerCase().contains(ID.toLowerCase())) {
+                System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
+                System.out.println("|   maNV     |       ten                |         email        |    phongBan                    |   luong    |  thueTn  |  tongLuong |");
+                System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
+                System.out.printf("| %-10s | %-24s | %-20s | %-30s | %-10.2f | %-8.2f | %-10.2f |\n",
+                        nhanVien.getMaNV(), nhanVien.getTen(), nhanVien.getEmail(),
+                        nhanVien.getPhongBan(), nhanVien.getLuong(), nhanVien.getThue(), nhanVien.calculatePay());
+                System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
                 check = true;
                 break;
             }
@@ -97,7 +107,7 @@ public class QLNV {
         }
     }
 
-    public void Y04() {
+    public void deleteEmployeeById() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma nhan vien can xoa: ");
         String ID = sc.nextLine();
@@ -117,7 +127,7 @@ public class QLNV {
         }
     }
 
-    public void Y05() {
+    public void updateEmployeeInfoById() {
         System.out.println("Nhap ma nhan vien can cap nhat: ");
         String ID = sc.nextLine();
         for (NhanVien nv : list) {
@@ -126,10 +136,10 @@ public class QLNV {
                 nv.nhap();
             }
         }
-        Y02();
+        displayEmployeeList();
     }
 
-    public void Y06() {
+    public void displayEmployeeListBySalaryRange() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Xuat danh sach nhan vien theo luong");
         System.out.print("Nhap luong can duoi: ");
@@ -146,7 +156,7 @@ public class QLNV {
         }
     }
 
-    public void Y07() {
+    public void sortEmployeesByName() {
         Comparator<NhanVien> comp = new Comparator<NhanVien>() {
             @Override
             public int compare(NhanVien nv1, NhanVien nv2) {
@@ -154,10 +164,10 @@ public class QLNV {
             }
         };
         Collections.sort(list, comp);
-        Y02();
+        displayEmployeeList();
     }
 
-    public void Y08() {
+    public void sortEmployeesByIncome() {
         Comparator<NhanVien> comp = new Comparator<NhanVien>() {
             @Override
             public int compare(NhanVien nv1, NhanVien nv2) {
@@ -169,17 +179,16 @@ public class QLNV {
             }
         };
         Collections.sort(list, comp);
-        Y02();
+        displayEmployeeList();
     }
 
-    public void Y09() {
-        Collections.sort(list, (a, b) -> (int) (b.getLuong() - a.getLuong()));
-        if(list.size() < 5){
+    public void displayTop5EmployeesByIncome() {
+        Collections.sort(list, (a, b) -> (int) (b.calculatePay()- a.calculatePay()));
+        if (list.size() < 5) {
             for (int i = 0; i < list.size(); i++) {
                 list.get(i).xuat();
             }
-        }
-        else{
+        } else {
             for (int i = 0; i < 5; i++) {
                 list.get(i).xuat();
             }
