@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package nhom4_duan_qlnv;
+package nhom5_duan_qlnv;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Scanner;
-import nhom4_duan_qlnv.Class.NhanVien;
-import nhom4_duan_qlnv.Class.NhanVien_BanHang;
-import nhom4_duan_qlnv.Class.NhanVien_BanTG;
-import nhom4_duan_qlnv.Class.NhanVien_KeToan;
-import nhom4_duan_qlnv.Class.NhanVien_KiThuat;
-import nhom4_duan_qlnv.Class.QuanLy;
+import nhom5_duan_qlnv.Class.NhanVien;
+import nhom5_duan_qlnv.Class.NhanVien_BanHang;
+import nhom5_duan_qlnv.Class.NhanVien_BanTG;
+import nhom5_duan_qlnv.Class.NhanVien_KeToan;
+import nhom5_duan_qlnv.Class.NhanVien_KiThuat;
+import nhom5_duan_qlnv.Class.QuanLy;
 
 /**
  *

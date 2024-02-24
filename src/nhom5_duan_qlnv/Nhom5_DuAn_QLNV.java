@@ -2,23 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
-package nhom4_duan_qlnv;
+package nhom5_duan_qlnv;
 
 import java.util.Arrays;
 import java.util.Scanner;
 import javax.swing.plaf.synth.Region;
-import nhom4_duan_qlnv.Class.NhanVien;
-import nhom4_duan_qlnv.Class.NhanVien_BanHang;
-import nhom4_duan_qlnv.Class.NhanVien_BanTG;
-import nhom4_duan_qlnv.Class.NhanVien_KeToan;
-import nhom4_duan_qlnv.Class.NhanVien_KiThuat;
-import nhom4_duan_qlnv.Class.QuanLy;
+import nhom5_duan_qlnv.Class.NhanVien;
+import nhom5_duan_qlnv.Class.NhanVien_BanHang;
+import nhom5_duan_qlnv.Class.NhanVien_BanTG;
+import nhom5_duan_qlnv.Class.NhanVien_KeToan;
+import nhom5_duan_qlnv.Class.NhanVien_KiThuat;
+import nhom5_duan_qlnv.Class.QuanLy;
 
 /**
  *
  * @author Acer
  */
-public class Nhom4_DuAn_QLNV {
+public class Nhom5_DuAn_QLNV {
 
     public static void menu() {
         System.out.println("\n==================== Menu chuong trinh ======================");
