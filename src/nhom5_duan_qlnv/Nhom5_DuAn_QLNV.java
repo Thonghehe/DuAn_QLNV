@@ -25,12 +25,15 @@ public class Nhom5_DuAn_QLNV {
         System.out.println("| 1. Nhap danh sach nhanh vien                               |");
         System.out.println("| 2. Xuat danh sach nhan vien                                |");
         System.out.println("| 3. Tim nhan vien theo ma nhan vien                         |");
-        System.out.println("| 4. Xoa nhan vien theo ma nhan vien                         |");
-        System.out.println("| 5. Cap nhat thong tin nhan vien theo ma nhan vien          |");
-        System.out.println("| 6. Xuat nhan vien theo khoang luong                        |");
-        System.out.println("| 7. Sap xep nhan vien theo ho va ten                        |");
-        System.out.println("| 8. Sap xep nhan vien theo thu nhap                         |");
-        System.out.println("| 9. Xuat 5 nhan vien co thu nhap cao nhat                   |");
+        System.out.println("| 4. Tim nhan vien theo ten nhan vien                        |");
+        System.out.println("| 5. Tim nhan vien theo Phong ban nhan vien                  |");
+        System.out.println("| 6. Xoa nhan vien theo ma nhan vien                         |");
+        System.out.println("| 7. Cap nhat thong tin nhan vien theo ma nhan vien          |");
+        System.out.println("| 8. Xuat nhan vien theo khoang luong                        |");
+        System.out.println("| 9. Sap xep nhan vien theo ho va ten                        |");
+        System.out.println("| 10. Sap xep nhan vien theo thu nhap                        |");
+        System.out.println("| 11. Xuat 5 nhan vien co thu nhap cao nhat                  |");
+        System.out.println("| 12. Lap Bao Cao                                            |");
         System.out.println("| 0. Thoat                                                   |");
         System.out.println("==============================================================");
         System.out.print("Moi ban chon: ");
@@ -43,13 +46,12 @@ public class Nhom5_DuAn_QLNV {
         System.setProperty("console.encoding", "UTF-8");
         QLNV ql = new QLNV();
 
-        ql.list.add(new NhanVien("NV001", "Nguyen Van A", "vana@gmail.com","NhanVien", 1000));
+        ql.list.add(new NhanVien("NV001", "Nguyen Van A", "vana@gmail.com", "Nhan Vien", 1000));
         ql.list.add(new NhanVien_BanHang(1500000, 0.1f, 20, "NV002", "Nguyen Thi B", "vanb@gmail.com", "Phong Sales", 1200));
         ql.list.add(new NhanVien_KeToan(3, "Certification XYZ", Arrays.asList("SoftwareA", "SoftwareB"), "NV003", "Tran Van C", "vanc@gmail.com", "Phong Ke Toan", 1500));
         ql.list.add(new NhanVien_BanTG(30, 10, 160, 10, "NV004", "Hoang Van D", "vand@gmail.com", "Nhan Vien Ban Thoi Gian", 800));
         ql.list.add(new NhanVien_KiThuat(10, 15, 5, Arrays.asList("Certification 1", "Certification 2"), "NV005", "Le Thi E", "vane@gmail.com", "Phong Ki Thuat", 1800));
         ql.list.add(new QuanLy(10, 1000, 3, "NV006", "Tran Thi F", "vanf@gmail.com", "Quan Ly", 2000));
-
 
         int option;
         while (true) {
@@ -69,22 +71,31 @@ public class Nhom5_DuAn_QLNV {
                     ql.findEmployeeById();
                     break;
                 case 4:
-                    ql.deleteEmployeeById();
+                    ql.findEmployeeByName();
                     break;
                 case 5:
-                    ql.updateEmployeeInfoById();
+                    ql.findEmployeesByDepartment();
                     break;
                 case 6:
-                    ql.displayEmployeeListBySalaryRange();
+                    ql.deleteEmployeeById();
                     break;
                 case 7:
-                    ql.sortEmployeesByName();
+                    ql.updateEmployeeInfoById();
                     break;
                 case 8:
-                    ql.sortEmployeesByIncome();
+                    ql.displayEmployeeListBySalaryRange();
                     break;
                 case 9:
+                    ql.sortEmployeesByName();
+                    break;
+                case 10:
+                    ql.sortEmployeesByIncome();
+                    break;
+                case 11:
                     ql.displayTop5EmployeesByIncome();
+                    break;
+                case 12:
+                    ql.generateReport();
                     break;
                 case 0:
                     System.out.println("Cam On đa su dung!!!");

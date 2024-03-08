@@ -66,15 +66,55 @@ public class QuanLy extends NhanVien {
         super.nhap();
 
         Scanner sc = new Scanner(System.in);
-
-        System.out.print("Nhap so luong nhan vien trong nhom: ");
-        teamSize = Integer.parseInt(sc.nextLine());
-
-        System.out.print("Nhap phu cap quan ly: ");
-        managementAllowance = Float.parseFloat(sc.nextLine());
-
-        System.out.print("Nhap so du an quan ly: ");
-        projectsManaged = Integer.parseInt(sc.nextLine());
+        
+        
+        boolean isValidTeamSize = false;
+        boolean isValidManagementAllowance = false;
+        boolean isValidprojectsManaged = false;
+        
+        while (!isValidTeamSize) {
+            try {
+                System.out.println("Nhap số luong thanh vien trong nhom: ");
+                teamSize = Integer.parseInt(sc.nextLine());
+                if (teamSize >= 0) {
+                    isValidTeamSize = true;
+                } else {
+                    System.out.println("So luong thanh vien khong hop le. Vui long nhap lai.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so cho so luong thanh vien.");
+            }
+        }
+        
+        
+        while (!isValidManagementAllowance) {
+            try {
+                System.out.println("Nhap phu cap quan ly: ");
+                managementAllowance = Float.parseFloat(sc.nextLine());
+                if (managementAllowance >= 0) {
+                    isValidManagementAllowance = true;
+                } else {
+                    System.out.println("phu cap quan ly khong hop le. Vui long nhap lai.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so cho phu cap quan ly.");
+            }
+        }
+        
+        while (!isValidprojectsManaged) {
+            try {
+                System.out.println("Nhap so du an quan ly: ");
+                projectsManaged = Integer.parseInt(sc.nextLine());
+                if (projectsManaged >= 0) {
+                    isValidprojectsManaged = true;
+                } else {
+                    System.out.println("so du an quan ly khong hop le. Vui long nhap lai.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Vui long nhap so cho so du an quan ly.");
+            }
+        }
+       
     }
 
     @Override

@@ -7,6 +7,8 @@ package nhom5_duan_qlnv;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 import nhom5_duan_qlnv.Class.NhanVien;
 import nhom5_duan_qlnv.Class.NhanVien_BanHang;
@@ -107,6 +109,46 @@ public class QLNV {
         }
     }
 
+    public void findEmployeeByName() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap ten nhan vien can tim: ");
+        String name = sc.nextLine();
+        Boolean check = false;
+        for (NhanVien nhanVien : list) {
+            if (nhanVien.getTen().toLowerCase().contains(name.toLowerCase())) {
+                System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
+                System.out.println("|   maNV     |       ten                |         email        |    phongBan                    |   luong    |  thueTn  |  tongLuong |");
+                System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
+                System.out.printf("| %-10s | %-24s | %-20s | %-30s | %-10.2f | %-8.2f | %-10.2f |\n",
+                        nhanVien.getMaNV(), nhanVien.getTen(), nhanVien.getEmail(),
+                        nhanVien.getPhongBan(), nhanVien.getLuong(), nhanVien.getThue(), nhanVien.calculatePay());
+                System.out.println("+------------+--------------------------+----------------------+--------------------------------+------------+----------+------------+");
+                check = true;
+                break;
+            }
+        }
+
+        if (check == false) {
+            System.out.println("Nhan vien khong ton tai !");
+        }
+    }
+
+    public void findEmployeesByDepartment() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Nhap phong ban can tim kiem: ");
+        String department = sc.nextLine();
+        boolean found = false;
+        for (NhanVien nv : list) {
+            if (nv.getPhongBan().equalsIgnoreCase(department)) {
+                nv.xuat();
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Khong co nhan vien nao o phong ban " + department);
+        }
+    }
+
     public void deleteEmployeeById() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Nhap ma nhan vien can xoa: ");
@@ -183,7 +225,7 @@ public class QLNV {
     }
 
     public void displayTop5EmployeesByIncome() {
-        Collections.sort(list, (a, b) -> (int) (b.calculatePay()- a.calculatePay()));
+        Collections.sort(list, (a, b) -> (int) (b.calculatePay() - a.calculatePay()));
         if (list.size() < 5) {
             for (int i = 0; i < list.size(); i++) {
                 list.get(i).xuat();
@@ -193,6 +235,57 @@ public class QLNV {
                 list.get(i).xuat();
             }
         }
+    }
+
+    public void calculateTotalSalary() {
+        double totalSalary = 0;
+        for (NhanVien nv : list) {
+            totalSalary += nv.calculatePay();
+        }
+        displayEmployeeList();
+        System.out.println("Tong luong cua tat ca nhan vien trong cong ty: " + totalSalary);
+    }
+
+    public void generateReport() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Chon loai bao cao:");
+        System.out.println("1. Bao cao tong so nhan vien trong cong ty");
+        System.out.println("2. Bao cao tong so nhan vien theo phong ban");
+        System.out.println("3. Bao cao tong luong cua cong ty");
+        
+        int option = scanner.nextInt();
+
+        switch (option) {
+            case 1:
+                generateTotalEmployeeCountReport();
+                break;
+            case 2:
+                generateEmployeeCountByDepartmentReport();
+                break;
+            case 3:
+                calculateTotalSalary();
+                break;
+            default:
+                System.out.println("Lua chon khong hop le!");
+        }
+    }
+
+    private void generateTotalEmployeeCountReport() {
+        int totalEmployeeCount = list.size();
+        System.out.println("Bao cao tong so nhan vien trong cong ty:");
+        System.out.println("Tong so nhan vien: " + totalEmployeeCount);
+    }
+
+    private void generateEmployeeCountByDepartmentReport() {
+        Map<String, Integer> departmentCounts = new HashMap<>();
+
+        for (NhanVien nv : list) {
+            String department = nv.getPhongBan();
+            departmentCounts.put(department, departmentCounts.getOrDefault(department, 0) + 1);
+        }
+
+        System.out.println("Bao cao tong so nhan vien theo phong ban:");
+         departmentCounts.forEach((department, count) -> System.out.println(department + ": " + count));
     }
 
 }
